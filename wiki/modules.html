@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParseStrings — Moduły</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1200px;margin:0 auto;padding:24px;line-height:1.45}
+    nav a{margin-right:14px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+  </style>
+</head>
+<body>
+  <h1>Karta modułów</h1>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="modules.html">Moduły</a>
+    <a href="roadmap.html">Roadmapa</a>
+    <a href="gaps_and_risks.html">Luki i ryzyka</a>
+    <a href="integration_with_ai_conversations.html">Integracja z AI_conversations</a>
+    <a href="sources.html">Indeks źródeł</a>
+  </nav>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Moduł</th>
+        <th>Cel</th>
+        <th>Zakres</th>
+        <th>Status</th>
+        <th>Zależności</th>
+        <th>Artefakty</th>
+        <th>Ryzyka</th>
+        <th>Kroki wdrożeniowe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>M1: Parse-StringToTimeValue</strong></td>
+        <td>Konwersja tekstu do reprezentacji czasu HH:mm:ss i opcjonalnie do <code>[datetime]</code> [<a href="sources.html#S2">S2</a>].</td>
+        <td>Obsługa wejść numerycznych i mieszanych; normalizacja długości; fallback na 00:00:00 [<a href="sources.html#S2">S2</a>].</td>
+        <td>Implementacja istnieje, brak testów i kontraktów błędów [<a href="sources.html#S2">S2</a>][<a href="sources.html#S1">S1</a>].</td>
+        <td>PowerShell runtime; typy .NET (<code>ArrayList</code>, <code>datetime</code>) [<a href="sources.html#S2">S2</a>].</td>
+        <td><code>/Parse-StringToTimeValue.ps1</code> [<a href="sources.html#S2">S2</a>].</td>
+        <td>Niejednoznaczne zachowanie dla nietypowych formatów; możliwe ciche maskowanie błędów przez domyślne 00 [<a href="sources.html#S2">S2</a>].</td>
+        <td>1) Dodać testy przypadków granicznych, 2) jawne kody błędów/walidację, 3) opisać kontrakt API w README.</td>
+      </tr>
+      <tr>
+        <td><strong>M2: CSV Support</strong></td>
+        <td>Wykrycie delimitera i wstępna walidacja, czy dane przypominają CSV [<a href="sources.html#S3">S3</a>].</td>
+        <td><code>Check-IfCSVData</code>, <code>Find-Delimiter</code>, <code>Get-DelimiterName</code>, <code>View-CSV</code> [<a href="sources.html#S3">S3</a>].</td>
+        <td>Implementacja bazowa gotowa; brak pokrycia testami i brak konfiguracji strategii delimitera [<a href="sources.html#S3">S3</a>].</td>
+        <td><code>System.IO</code>, <code>System.Collections</code>, <code>Out-GridView</code> [<a href="sources.html#S3">S3</a>].</td>
+        <td><code>/csv-support.ps1</code> [<a href="sources.html#S3">S3</a>].</td>
+        <td>Heurystyka oparta o 2 linie może fałszować wyniki; spacja wyłączona z priorytetu przez ryzyko false-positive [<a href="sources.html#S3">S3</a>].</td>
+        <td>1) Dodać walidację N-linii, 2) dodać tryb headless bez GUI, 3) parametryzować zestaw delimiterów.</td>
+      </tr>
+      <tr>
+        <td><strong>M3: Dokumentacja i metadane</strong></td>
+        <td>Zdefiniowanie celu projektu i warunków licencyjnych [<a href="sources.html#S1">S1</a>][<a href="sources.html#S4">S4</a>].</td>
+        <td>Krótki README i pełna licencja GPLv3 [<a href="sources.html#S1">S1</a>][<a href="sources.html#S4">S4</a>].</td>
+        <td>Minimalna dokumentacja, dobra podstawa prawna, niski poziom operacyjny [<a href="sources.html#S1">S1</a>][<a href="sources.html#S4">S4</a>].</td>
+        <td>Brak technicznych zależności runtime.</td>
+        <td><code>/README.md</code>, <code>/LICENSE</code> [<a href="sources.html#S1">S1</a>][<a href="sources.html#S4">S4</a>].</td>
+        <td>Niewystarczający poziom informacji wdrożeniowej i API onboarding [<a href="sources.html#S1">S1</a>].</td>
+        <td>1) Rozszerzyć README, 2) dodać changelog, 3) opisać scenariusze integracyjne.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
