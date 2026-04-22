@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParseStrings — Integracja z AI_conversations</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.45}
+    nav a{margin-right:14px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+    .note{border:1px solid #ddd;padding:10px;border-radius:8px;background:#fafafa}
+  </style>
+</head>
+<body>
+  <h1>Porównanie i integracja z mrcin-maw/AI_conversations</h1>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="modules.html">Moduły</a>
+    <a href="roadmap.html">Roadmapa</a>
+    <a href="gaps_and_risks.html">Luki i ryzyka</a>
+    <a href="integration_with_ai_conversations.html">Integracja z AI_conversations</a>
+    <a href="sources.html">Indeks źródeł</a>
+  </nav>
+
+  <div class="note">
+    <strong>Zakres porównania:</strong> pełna analiza zawartości repo <code>AI_conversations</code> nie była możliwa w tym przebiegu (brak dostępu przez API). Poniższe wnioski są oparte na stanie ParseStrings i hipotezie integracyjnej wymagającej domknięcia po uzyskaniu dostępu.
+  </div>
+
+  <h2>Zgodności (potencjalne)</h2>
+  <ul>
+    <li>ParseStrings dostarcza funkcje normalizacji tekstu czasu i struktur CSV, co może służyć jako warstwa pre-processingu dla rozmów/opisów danych [<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</li>
+    <li>Projekt jest lekki i skryptowy, więc łatwo osadzić go jako narzędzia pomocnicze w pipeline dokumentacyjno-analitycznym [<a href="sources.html#S1">S1</a>][<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</li>
+  </ul>
+
+  <h2>Rozbieżności</h2>
+  <ul>
+    <li>W ParseStrings brak modeli domenowych dla konwersacji (sesje, role, metadane, wersjonowanie promptów); istnieje tylko warstwa parserów stringów [<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</li>
+    <li>Brak udokumentowanego interfejsu integracyjnego (CLI/REST/moduł PowerShell z manifestem), co utrudnia bezpośrednie scalenie z repozytorium rozmów [<a href="sources.html#S1">S1</a>].</li>
+  </ul>
+
+  <h2>Brakujące tematy do scalenia</h2>
+  <ol>
+    <li>Wspólny słownik pojęć (czas, rekord, wiadomość, konwersacja, źródło).</li>
+    <li>Jednolity format wymiany danych (JSON/CSV + schema).</li>
+    <li>Polityka walidacji i raportowania błędów parsera.</li>
+    <li>Testy kontraktowe między repozytoriami.</li>
+  </ol>
+
+  <h2>Rekomendacje scalenia</h2>
+  <table>
+    <thead><tr><th>Krok</th><th>Cel</th><th>Rezultat</th></tr></thead>
+    <tbody>
+      <tr><td>R1</td><td>Uzyskać dostęp odczytu do <code>AI_conversations</code> i wykonać pełny skan artefaktów.</td><td>Uzupełniona macierz zgodności i luk.</td></tr>
+      <tr><td>R2</td><td>Wydzielić ParseStrings jako moduł wejściowy (input-normalization).</td><td>Powtarzalne użycie parserów w obu repozytoriach.</td></tr>
+      <tr><td>R3</td><td>Zdefiniować wspólny kontrakt danych i testy kontraktowe.</td><td>Stabilna integracja bez regresji semantycznych.</td></tr>
+      <tr><td>R4</td><td>Przenieść i utrzymać tę wiki w <code>Visions_n_paths</code> jako warstwę architektoniczną.</td><td>Spójna dokumentacja wielorepozytoryjna.</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

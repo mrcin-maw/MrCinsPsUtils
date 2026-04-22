@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParseStrings — Roadmapa wdrożeniowa</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.45}
+    nav a{margin-right:14px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+  </style>
+</head>
+<body>
+  <h1>Roadmapa wdrożeniowa</h1>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="modules.html">Moduły</a>
+    <a href="roadmap.html">Roadmapa</a>
+    <a href="gaps_and_risks.html">Luki i ryzyka</a>
+    <a href="integration_with_ai_conversations.html">Integracja z AI_conversations</a>
+    <a href="sources.html">Indeks źródeł</a>
+  </nav>
+
+  <p>Roadmapa opiera się na stanie funkcji parsera czasu i CSV oraz na luce dokumentacyjno-testowej [<a href="sources.html#S1">S1</a>][<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</p>
+
+  <table>
+    <thead><tr><th>Etap</th><th>Priorytet</th><th>Zakres</th><th>Ryzyka</th><th>Kryteria ukończenia</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>E1: Stabilizacja wejść i kontraktów</td>
+        <td>Wysoki</td>
+        <td>Ujednolicić walidację wejścia dla parsera czasu i CSV; zdefiniować jawny format błędów.</td>
+        <td>Niewykryte regresje przez brak testów bazowych [<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</td>
+        <td>Zdefiniowany dokument kontraktu API + minimalny zestaw testów jednostkowych.</td>
+      </tr>
+      <tr>
+        <td>E2: Testowalność i automatyzacja</td>
+        <td>Wysoki</td>
+        <td>Dodać testy dla przypadków pozytywnych/negatywnych; odseparować komponent UI (<code>Out-GridView</code>) od logiki.</td>
+        <td>Brak rozdziału logika/UI utrudnia testy headless [<a href="sources.html#S3">S3</a>].</td>
+        <td>Uruchamialny pakiet testów i scenariusze headless.</td>
+      </tr>
+      <tr>
+        <td>E3: Dokumentacja wdrożeniowa</td>
+        <td>Średni</td>
+        <td>Rozszerzyć README o opis API, przykłady, ograniczenia wejść, instrukcje integracji.</td>
+        <td>Niewystarczający onboarding i błędne użycie funkcji [<a href="sources.html#S1">S1</a>].</td>
+        <td>README obejmuje sekcje: instalacja, API, przykłady, ograniczenia.</td>
+      </tr>
+      <tr>
+        <td>E4: Pakietyzacja i publikacja</td>
+        <td>Średni</td>
+        <td>Przygotować strukturę modułu PowerShell i wersjonowanie semantyczne.</td>
+        <td>Niekompatybilne zmiany bez polityki wersji.</td>
+        <td>Wydanie oznaczone tagiem, changelog i artefakt modułu.</td>
+      </tr>
+      <tr>
+        <td>E5: Integracja wiedzy między repo</td>
+        <td>Średni</td>
+        <td>Zsynchronizować mapę tematów z <code>AI_conversations</code> i przenieść wiki do <code>Visions_n_paths</code>.</td>
+        <td>Brak dostępu do repo porównawczego blokuje pełne mapowanie.</td>
+        <td>Uzgodniony słownik tematów + kompletna macierz zgodności i luk.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

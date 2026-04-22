@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParseStrings — Analiza projektowo-wdrożeniowa</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.45}
+    nav a{margin-right:14px}
+    .box{border:1px solid #ddd;padding:12px;margin:12px 0;border-radius:8px}
+    table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+  </style>
+</head>
+<body>
+  <h1>ParseStrings — analiza wielopoziomowa</h1>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="modules.html">Moduły</a>
+    <a href="roadmap.html">Roadmapa</a>
+    <a href="gaps_and_risks.html">Luki i ryzyka</a>
+    <a href="integration_with_ai_conversations.html">Integracja z AI_conversations</a>
+    <a href="sources.html">Indeks źródeł</a>
+  </nav>
+
+  <div class="box">
+    <h2>1) Opis projektu (cel, zakres, dojrzałość)</h2>
+    <p><strong>Cel:</strong> repozytorium dostarcza lekkie procedury PowerShell do parsowania tekstu, głównie konwersji ciągu do wartości czasu oraz wsparcia operacji CSV [<a href="sources.html#S1">S1</a>][<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</p>
+    <p><strong>Zakres:</strong> obecny zakres funkcjonalny obejmuje dwa główne obszary: parser czasu (<code>Parse-StringToTimeValue</code>) oraz wykrywanie delimiterów/obsługę CSV (<code>Check-IfCSVData</code>, <code>Find-Delimiter</code>, <code>View-CSV</code>) [<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>].</p>
+    <p><strong>Dojrzałość:</strong> projekt jest funkcjonalnym zalążkiem biblioteki narzędziowej: ma podstawową dokumentację i licencję GPLv3, ale brak testów automatycznych, brak pipeline CI i brak formalnej struktury wydawniczej [<a href="sources.html#S1">S1</a>][<a href="sources.html#S4">S4</a>].</p>
+  </div>
+
+  <div class="box">
+    <h2>2) Architektura logiczna (moduły, zależności, przepływy)</h2>
+    <ul>
+      <li><strong>Moduł A — Time Parsing:</strong> wejściowy string → normalizacja długości → reguły dla formatu liczbowego i segmentowego → uzupełnienie HH:mm:ss → zwrot string lub <code>[datetime]</code> [<a href="sources.html#S2">S2</a>].</li>
+      <li><strong>Moduł B — CSV Support:</strong> analiza 2 pierwszych linii → estymacja delimitera (",", ";", tab, spacja) → walidacja spójności → opcjonalny podgląd tabelaryczny [<a href="sources.html#S3">S3</a>].</li>
+      <li><strong>Zależności techniczne:</strong> PowerShell + namespace <code>System.IO</code> i <code>System.Collections</code>; interakcyjny podgląd oparty o <code>Out-GridView</code> [<a href="sources.html#S3">S3</a>].</li>
+    </ul>
+    <p>Szczegółowy katalog modułów: <a href="modules.html">modules.html</a>.</p>
+  </div>
+
+  <div class="box">
+    <h2>3) Odzyskana wiedza (z linkami do źródeł)</h2>
+    <ol>
+      <li>Parser czasu obcina dane wejściowe do 8 znaków, co ogranicza wpływ dłuższych wejść i stabilizuje przetwarzanie [<a href="sources.html#S2">S2</a>].</li>
+      <li>W trybie nienumerycznym funkcja wyłuskuje grupy cyfr regexem i dopełnia jednocyfrowe segmenty zerem [<a href="sources.html#S2">S2</a>].</li>
+      <li>Walidacja CSV opiera się na porównaniu delimitera i liczby pól między pierwszymi dwoma wierszami [<a href="sources.html#S3">S3</a>].</li>
+      <li>Detektor delimitera świadomie osłabia rolę spacji (ryzyko false positive) [<a href="sources.html#S3">S3</a>].</li>
+      <li>Projekt deklaruje licencję GPLv3 na poziomie plików źródłowych i pliku LICENSE [<a href="sources.html#S2">S2</a>][<a href="sources.html#S3">S3</a>][<a href="sources.html#S4">S4</a>].</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h2>4) Roadmapa wdrożeniowa</h2>
+    <p>Pełna roadmapa (etapy, priorytety, ryzyka, kryteria ukończenia): <a href="roadmap.html">roadmap.html</a>.</p>
+  </div>
+
+  <div class="box">
+    <h2>5) Plan techniczny</h2>
+    <ul>
+      <li><strong>Stabilizacja:</strong> testy jednostkowe parsera czasu i detekcji delimitera oraz walidacja błędnych wejść.</li>
+      <li><strong>Refaktoryzacja:</strong> separacja logiki rdzeniowej od UI (<code>Out-GridView</code>) i ujednolicenie kontraktów funkcji.</li>
+      <li><strong>Dokumentacja:</strong> rozszerzenie README o API, przykłady i ograniczenia formatów wejściowych [<a href="sources.html#S1">S1</a>].</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>6) Luki i niejednoznaczności</h2>
+    <p>Lista luk, ryzyk i plan domknięcia: <a href="gaps_and_risks.html">gaps_and_risks.html</a>.</p>
+  </div>
+</body>
+</html>

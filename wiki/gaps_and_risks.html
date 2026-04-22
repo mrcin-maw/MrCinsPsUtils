@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ParseStrings — Luki i ryzyka</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.45}
+    nav a{margin-right:14px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+  </style>
+</head>
+<body>
+  <h1>Luki, niejednoznaczności i plan domknięcia</h1>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="modules.html">Moduły</a>
+    <a href="roadmap.html">Roadmapa</a>
+    <a href="gaps_and_risks.html">Luki i ryzyka</a>
+    <a href="integration_with_ai_conversations.html">Integracja z AI_conversations</a>
+    <a href="sources.html">Indeks źródeł</a>
+  </nav>
+
+  <table>
+    <thead><tr><th>Luka / niejednoznaczność</th><th>Wpływ</th><th>Źródło</th><th>Plan domknięcia</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Brak testów automatycznych parsera czasu i CSV.</td>
+        <td>Wysokie ryzyko regresji i niejawnych zmian zachowania.</td>
+        <td>[<a href="sources.html#S2">S2</a>], [<a href="sources.html#S3">S3</a>] (istnieje logika, brak artefaktów testowych w repo).</td>
+        <td>Wprowadzić testy jednostkowe i zestaw przypadków granicznych dla każdej funkcji.</td>
+      </tr>
+      <tr>
+        <td>README nie opisuje szczegółowo API i ograniczeń.</td>
+        <td>Wydłużony onboarding, błędy integracyjne.</td>
+        <td>[<a href="sources.html#S1">S1</a>].</td>
+        <td>Rozbudować dokumentację o kontrakt wejść/wyjść i przykłady.</td>
+      </tr>
+      <tr>
+        <td>Heurystyka delimitera bazuje na ograniczonej próbce (2 linie).</td>
+        <td>Fałszywe klasyfikacje CSV.</td>
+        <td>[<a href="sources.html#S3">S3</a>].</td>
+        <td>Dodać analizę wielu linii oraz raport pewności detekcji.</td>
+      </tr>
+      <tr>
+        <td>Sprzężenie logiki i warstwy UI (<code>Out-GridView</code>).</td>
+        <td>Trudna automatyzacja i uruchomienia headless.</td>
+        <td>[<a href="sources.html#S3">S3</a>].</td>
+        <td>Wydzielić warstwę prezentacji; pozostawić API czysto funkcyjne.</td>
+      </tr>
+      <tr>
+        <td>Brak bezpośredniego dostępu do repo <code>mrcin-maw/AI_conversations</code> (404/permissions) podczas analizy.</td>
+        <td>Niepełne porównanie międzyrepozytoryjne.</td>
+        <td>Ujawnione w procesie analizy integracyjnej (sekcja integracyjna wiki).</td>
+        <td>Uzupełnić analizę po uzyskaniu dostępu i domknąć macierz zgodności.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
