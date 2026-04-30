@@ -7,6 +7,10 @@ Repozytorium na wiele narzędzi/użytków PowerShell.
 - `tools/parse-strings/` – podprojekt z funkcjami do parsowania stringów i pracy z CSV.
   - `Parse-StringToTimeValue.ps1`
   - `csv-support.ps1`
+- `tools/replace-cases/` – podprojekt do normalizacji tekstu i zamiany znaków diakrytycznych.
+  - `Replace-Cases.ps1`
+  - `casedata.csv`
+  - `specialcharsdata.csv`
 - `wiki/` – materiały pomocnicze.
 
 ## Podprojekt: parse-strings
@@ -33,11 +37,25 @@ Udostępnia funkcje pomocnicze do pracy z CSV:
 - `Get-DelimiterName` – zwraca nazwę separatora.
 - `View-CSV` – wyświetla dane w `Out-GridView`.
 
+## Podprojekt: replace-cases
+
+### `Replace-Cases.ps1`
+Udostępnia funkcję:
+
+- `Replace-Cases ([string] $sourcestring, [-replaceSpecialChars] [-dontTouchSpaces] [-trim [<trimSeparators>]] [-reloadTable])`
+
+Funkcja normalizuje tekst poprzez:
+
+- zamianę znaków diakrytycznych i narodowych na odpowiedniki ASCII,
+- opcjonalną zamianę znaków specjalnych,
+- opcjonalne usuwanie zduplikowanych separatorów.
+
 ## Użycie
 
 ```powershell
 . ./tools/parse-strings/Parse-StringToTimeValue.ps1
 . ./tools/parse-strings/csv-support.ps1
+. ./tools/replace-cases/Replace-Cases.ps1
 ```
 
 Następnie można wywoływać funkcje bezpośrednio w bieżącej sesji PowerShell.
